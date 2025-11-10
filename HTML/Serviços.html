@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serviços - Prefeitura Municipal de Aracaju</title>
+    <style>
+        /* Reset e estilos gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(to right, #005baa, #003366);
+            color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo-icon span {
+            color: #005baa;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .logo-text h1 {
+            font-size: 22px;
+            font-weight: bold;
+        }
+        
+        .logo-text p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .search-bar {
+            display: flex;
+            width: 300px;
+        }
+        
+        .search-bar input {
+            padding: 10px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            width: 100%;
+        }
+        
+        .search-bar button {
+            background-color: #ffcc00;
+            border: none;
+            padding: 0 15px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .search-bar button:hover {
+            background-color: #e6b800;
+        }
+        
+        /* Menu de navegação */
+        nav {
+            background-color: #004080;
+        }
+        
+        .main-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .main-menu li {
+            position: relative;
+        }
+        
+        .main-menu a {
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            display: block;
+            transition: background-color 0.3s;
+            font-weight: 500;
+        }
+        
+        .main-menu a:hover, .main-menu a.active {
+            background-color: #003366;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 15px 0;
+            background-color: #e9ecef;
+            font-size: 14px;
+        }
+        
+        .breadcrumb a {
+            color: #005baa;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Conteúdo principal */
+        .page-header {
+            text-align: center;
+            padding: 30px 0;
+            background-color: white;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .page-header h2 {
+            color: #005baa;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .page-header p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Botões de Serviços */
+        .services-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .service-btn {
+            padding: 20px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            min-width: 200px;
+            justify-content: center;
+        }
+        
+        .service-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .health-btn {
+            background: linear-gradient(to right, #e74c3c, #c0392b);
+        }
+        
+        .housing-btn {
+            background: linear-gradient(to right, #3498db, #2980b9);
+        }
+        
+        .water-btn {
+            background: linear-gradient(to right, #2ecc71, #27ae60);
+        }
+        
+        /* Conteúdo dos Serviços */
+        .service-content {
+            display: none;
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+        
+        .service-content.active {
+            display: block;
+        }
+        
+        .service-title {
+            color: #005baa;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #005baa;
+        }
+        
+        /* Saúde */
+        .health-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .health-option {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #e74c3c;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .health-option:hover {
+            background-color: #e9ecef;
+            transform: translateY(-3px);
+        }
+        
+        .health-option h3 {
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+        
+        /* Habitação */
+        .housing-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .housing-results {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .property-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .property-image {
+            height: 200px;
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+        
+        .property-info {
+            padding: 15px;
+        }
+        
+        .property-info h3 {
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+        
+        /* Água e Esgoto */
+        .water-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .water-option {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #2ecc71;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .water-option:hover {
+            background-color: #e9ecef;
+            transform: translateY(-3px);
+        }
+        
+        .water-option h3 {
+            color: #2ecc71;
+            margin-bottom: 10px;
+        }
+        
+        /* Mapa */
+        .map-container {
+            height: 300px;
+            background-color: #e9ecef;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            border: 1px solid #ddd;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .modal-title {
+            color: #005baa;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #005baa;
+        }
+        
+        /* Botões */
+        .btn {
+            display: inline-block;
+            background-color: #005baa;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .btn:hover {
+            background-color: #004080;
+        }
+        
+        .btn-block {
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+        
+        /* Resultados de medicamentos */
+        .medicine-results {
+            margin-top: 20px;
+        }
+        
+        .medicine-item {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid #e74c3c;
+        }
+        
+        /* Rodapé */
+        footer {
+            background-color: #004080;
+            color: white;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h4 {
+            margin-bottom: 20px;
+            font-size: 18px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: #ffcc00;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #005baa;
+            font-size: 14px;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .top-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+            }
+            
+            .search-bar {
+                width: 100%;
+                max-width: 400px;
+            }
+            
+            .main-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .main-menu li {
+                flex: 1 0 50%;
+                text-align: center;
+            }
+            
+            .services-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .housing-form {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="container">
+            <div class="top-header">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <span>PMA</span>
+                    </div>
+                    <div class="logo-text">
+                        <h1>PREFEITURA MUNICIPAL DE ARACAJU</h1>
+                        <p>Capital de Sergipe - Cidade que enche os olhos de amor</p>
+                    </div>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Buscar no site...">
+                    <button>🔍</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Menu de navegação -->
+        <nav>
+            <div class="container">
+                <ul class="main-menu">
+                    <li><a href="index.html">A Prefeitura</a></li>
+                    <li><a href="secretarias.html">Secretarias</a></li>
+                    <li><a href="Serviços.html">Serviços</a></li>
+                    <li><a href="noticias.html">Notícias</a></li>
+                    <li><a href="transparencia.html">Transparência</a></li>
+                    <li><a href="editais.html">Editais</a></li>
+                    <li><a href="faleconosco.html">Fale Conosco</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Breadcrumb -->
+    <div class="breadcrumb container">
+        <a href="#">Home</a> > <a href="#">Serviços</a>
+    </div>
+    
+    <!-- Conteúdo principal -->
+    <main>
+        <div class="page-header">
+            <div class="container">
+                <h2>Serviços Municipais</h2>
+                <p>Encontre e acesse todos os serviços oferecidos pela Prefeitura de Aracaju</p>
+            </div>
+        </div>
+        
+        <div class="container">
+            <!-- Botões de Serviços -->
+            <div class="services-buttons">
+                <button class="service-btn health-btn" data-service="health">
+                    <span>🏥</span> Saúde
+                </button>
+                <button class="service-btn housing-btn" data-service="housing">
+                    <span>🏠</span> Habitação
+                </button>
+                <button class="service-btn water-btn" data-service="water">
+                    <span>💧</span> Água e Esgoto
+                </button>
+            </div>
+            
+            <!-- Conteúdo Saúde -->
+            <div id="health-content" class="service-content">
+                <h2 class="service-title">Serviços de Saúde</h2>
+                
+                <div class="health-options">
+                    <div class="health-option" data-option="units">
+                        <h3>Unidades de Saúde</h3>
+                        <p>Encontre a unidade de saúde mais próxima e verifique horários de atendimento</p>
+                    </div>
+                    
+                    <div class="health-option" data-option="medicines">
+                        <h3>Medicamentos Disponíveis</h3>
+                        <p>Verifique a disponibilidade de medicamentos nas farmácias municipais</p>
+                    </div>
+                    
+                    <div class="health-option" data-option="vaccination">
+                        <h3>Campanhas de Vacinação</h3>
+                        <p>Confira as campanhas de vacinação em andamento e locais de aplicação</p>
+                    </div>
+                    
+                    <div class="health-option" data-option="family-health">
+                        <h3>Programa Saúde da Família</h3>
+                        <p>Informações sobre o programa e equipes de saúde da família</p>
+                    </div>
+                </div>
+                
+                <div id="health-details"></div>
+            </div>
+            
+            <!-- Conteúdo Habitação -->
+            <div id="housing-content" class="service-content">
+                <h2 class="service-title">Serviços de Habitação</h2>
+                
+                <div class="housing-form">
+                    <div class="form-group">
+                        <label for="cep">CEP</label>
+                        <input type="text" id="cep" placeholder="Digite o CEP" maxlength="9">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="numero">Número</label>
+                        <input type="text" id="numero" placeholder="Número do imóvel">
+                    </div>
+                </div>
+                
+                <button class="btn btn-block" id="search-properties">Buscar Imóveis</button>
+                
+                <div class="map-container" id="property-map" style="display: none;">
+                    Mapa com localização do imóvel
+                </div>
+                
+                <div class="housing-results" id="housing-results">
+                    <!-- Resultados serão inseridos aqui via JavaScript -->
+                </div>
+                
+                <div class="housing-options" style="margin-top: 30px;">
+                    <h3>Outros Serviços de Habitação</h3>
+                    <div class="health-options">
+                        <div class="health-option" style="border-left-color: #3498db;" data-housing-option="minha-casa">
+                            <h3>Programa Minha Casa Minha Vida</h3>
+                            <p>Informações sobre o programa de habitação popular</p>
+                        </div>
+                        
+                        <div class="health-option" style="border-left-color: #3498db;" data-housing-option="regularizacao">
+                            <h3>Regularização Fundiária</h3>
+                            <p>Processos para regularização de imóveis</p>
+                        </div>
+                        
+                        <div class="health-option" style="border-left-color: #3498db;" data-housing-option="urbanizacao">
+                            <h3>Urbanização de Assentamentos</h3>
+                            <p>Programas de urbanização para áreas de assentamento</p>
+                        </div>
+                        
+                        <div class="health-option" style="border-left-color: #3498db;" data-housing-option="cadastro">
+                            <h3>Cadastro Habitacional</h3>
+                            <p>Cadastro para programas habitacionais municipais</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="housing-details"></div>
+            </div>
+            
+            <!-- Conteúdo Água e Esgoto -->
+            <div id="water-content" class="service-content">
+                <h2 class="service-title">Serviços de Água e Esgoto</h2>
+                
+                <div class="water-options">
+                    <div class="water-option" data-option="irregularities">
+                        <h3>Irregularidades no Abastecimento</h3>
+                        <p>Verifique locais com problemas no abastecimento de água</p>
+                    </div>
+                    
+                    <div class="water-option" data-option="debts">
+                        <h3>Consultar Débitos</h3>
+                        <p>Verifique suas contas em aberto e situação financeira</p>
+                    </div>
+                    
+                    <div class="water-option" data-option="water-quality">
+                        <h3>Monitoramento da Qualidade da Água</h3>
+                        <p>Verifique a qualidade da água em sua região</p>
+                    </div>
+                    
+                    <div class="water-option" data-option="new-connection">
+                        <h3>Solicitar Ligação Nova</h3>
+                        <p>Solicite nova ligação de água e esgoto</p>
+                    </div>
+                    
+                    <div class="water-option" data-option="eta-locations">
+                        <h3>Estações de Tratamento (ETA)</h3>
+                        <p>Localize as estações de tratamento de água</p>
+                    </div>
+                </div>
+                
+                <div id="water-details"></div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Modal para Agendamento de Consulta -->
+    <div class="modal" id="appointment-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-appointment">&times;</span>
+            <h2 class="modal-title">Agendamento de Consulta</h2>
+            
+            <div class="form-group">
+                <label for="patient-name">Nome Completo</label>
+                <input type="text" id="patient-name" placeholder="Digite seu nome completo">
+            </div>
+            
+            <div class="form-group">
+                <label for="patient-cpf">CPF</label>
+                <input type="text" id="patient-cpf" placeholder="Digite seu CPF">
+            </div>
+            
+            <div class="form-group">
+                <label for="appointment-date">Data da Consulta</label>
+                <input type="date" id="appointment-date">
+            </div>
+            
+            <div class="form-group">
+                <label for="appointment-time">Horário</label>
+                <select id="appointment-time">
+                    <option value="">Selecione um horário</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="doctor">Médico</label>
+                <select id="doctor">
+                    <option value="">Selecione um médico</option>
+                    <option value="dr-silva">Dr. Silva - Clínico Geral</option>
+                    <option value="dra-santos">Dra. Santos - Pediatra</option>
+                    <option value="dr-oliveira">Dr. Oliveira - Cardiologista</option>
+                </select>
+            </div>
+            
+            <button class="btn btn-block" id="confirm-appointment">Confirmar Agendamento</button>
+            
+            <div style="margin-top: 20px; text-align: center;">
+                <p>Já possui cadastro? <a href="#" id="patient-login">Fazer login</a></p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal para Login/Cadastro -->
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-login">&times;</span>
+            <h2 class="modal-title">Acesso ao Sistema</h2>
+            
+            <div class="form-group">
+                <label for="login-cpf">CPF</label>
+                <input type="text" id="login-cpf" placeholder="Digite seu CPF">
+            </div>
+            
+            <div class="form-group">
+                <label for="login-password">Senha</label>
+                <input type="password" id="login-password" placeholder="Digite sua senha">
+            </div>
+            
+            <button class="btn btn-block" id="confirm-login">Entrar</button>
+            
+            <div style="margin-top: 20px; text-align: center;">
+                <p>Não possui cadastro? <a href="#" id="create-account">Criar conta</a></p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Rodapé -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>CONTATO</h4>
+                    <ul>
+                        <li>Endereço: Rua Santa Luzia, 795 - Centro</li>
+                        <li>Telefone: (79) 3179-1000</li>
+                        <li>E-mail: ouvidoria@aracaju.se.gov.br</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>HORÁRIO DE ATENDIMENTO</h4>
+                    <ul>
+                        <li>Segunda a Sexta: 7h às 13h</li>
+                        <li>Plantão: Sábados, domingos e feriados</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>LINKS ÚTEIS</h4>
+                    <ul>
+                        <li><a href="Serviços.html">IPTU</a></li>
+                        <li><a href="Serviços.html">Alvará de Funcionamento</a></li>
+                        <li><a href="Serviços.html">Débitos</a></li>
+                        <li><a href="servicos.html">Agendamento Online</a></li>
+                        <li><a href="servicos.html">Medicamentos</a></li>
+                        <li><a href="servicos.html">Urbanização de Assentamentos</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; Pagina Demonstrativa</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navegação entre serviços
+        document.querySelectorAll('.service-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const service = this.getAttribute('data-service');
+                
+                // Esconde todos os conteúdos
+                document.querySelectorAll('.service-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                // Mostra o conteúdo selecionado
+                document.getElementById(`${service}-content`).classList.add('active');
+            });
+        });
+        
+        // Saúde - Opções
+        document.querySelectorAll('.health-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const optionType = this.getAttribute('data-option');
+                const detailsContainer = document.getElementById('health-details');
+                
+                let content = '';
+                
+                switch(optionType) {
+                    case 'units':
+                        content = `
+                            <h3>Unidades de Saúde</h3>
+                            <div class="form-group">
+                                <label for="health-unit">Selecione a Unidade de Saúde:</label>
+                                <select id="health-unit">
+                                    <option value="">Selecione uma unidade</option>
+                                    <option value="usf-centro">USF Centro</option>
+                                    <option value="usf-sao-jose">USF São José</option>
+                                    <option value="usf-santa-maria">USF Santa Maria</option>
+                                    <option value="usf-coroa-do-meio">USF Coroa do Meio</option>
+                                </select>
+                            </div>
+                            <div id="unit-details"></div>
+                        `;
+                        break;
+                    case 'medicines':
+                        content = `
+                            <h3>Medicamentos Disponíveis</h3>
+                            <div class="form-group">
+                                <label for="medicine-search">Buscar Medicamento:</label>
+                                <input type="text" id="medicine-search" placeholder="Digite o nome do medicamento">
+                            </div>
+                            <button class="btn" id="search-medicine">Buscar</button>
+                            <div id="medicine-results" class="medicine-results"></div>
+                        `;
+                        break;
+                    case 'vaccination':
+                        content = `
+                            <h3>Campanhas de Vacinação</h3>
+                            <div class="form-group">
+                                <label for="vaccine-location">Onde posso me vacinar?</label>
+                                <select id="vaccine-location">
+                                    <option value="">Selecione uma região</option>
+                                    <option value="centro">Centro - USF Centro</option>
+                                    <option value="sao-jose">São José - USF São José</option>
+                                    <option value="santa-maria">Santa Maria - USF Santa Maria</option>
+                                    <option value="coroa-do-meio">Coroa do Meio - USF Coroa do Meio</option>
+                                </select>
+                            </div>
+                            <div id="vaccine-details"></div>
+                        `;
+                        break;
+                    case 'family-health':
+                        content = `
+                            <h3>Programa Saúde da Família</h3>
+                            <div class="form-group">
+                                <label for="psf-region">Selecione sua região:</label>
+                                <select id="psf-region">
+                                    <option value="">Selecione uma região</option>
+                                    <option value="centro">Centro</option>
+                                    <option value="sao-jose">São José</option>
+                                    <option value="santa-maria">Santa Maria</option>
+                                    <option value="coroa-do-meio">Coroa do Meio</option>
+                                </select>
+                            </div>
+                            <div id="psf-details"></div>
+                        `;
+                        break;
+                }
+                
+                detailsContainer.innerHTML = content;
+                
+                // Adiciona funcionalidade para seleção de unidade de saúde
+                if (optionType === 'units') {
+                    setTimeout(() => {
+                        document.getElementById('health-unit').addEventListener('change', function() {
+                            const unit = this.value;
+                            if (unit) {
+                                const unitDetails = document.getElementById('unit-details');
+                                unitDetails.innerHTML = `
+                                    <h4>Horários de Atendimento - ${getUnitName(unit)}</h4>
+                                    <p><strong>Clínico Geral:</strong> Segunda a Sexta, 7h às 17h</p>
+                                    <p><strong>Pediatra:</strong> Terça e Quinta, 8h às 12h</p>
+                                    <p><strong>Ginecologista:</strong> Quarta, 13h às 17h</p>
+                                    <p><strong>Enfermagem:</strong> Segunda a Sexta, 7h às 17h</p>
+                                    <button class="btn" id="schedule-appointment">Agendar Consulta</button>
+                                `;
+                                
+                                document.getElementById('schedule-appointment').addEventListener('click', function() {
+                                    document.getElementById('appointment-modal').classList.add('active');
+                                });
+                            }
+                        });
+                    }, 100);
+                }
+                
+                // Adiciona funcionalidade para busca de medicamentos
+                if (optionType === 'medicines') {
+                    setTimeout(() => {
+                        document.getElementById('search-medicine').addEventListener('click', function() {
+                            const medicine = document.getElementById('medicine-search').value;
+                            if (medicine) {
+                                const resultsContainer = document.getElementById('medicine-results');
+                                resultsContainer.innerHTML = `
+                                    <h4>Resultados para "${medicine}"</h4>
+                                    <div class="medicine-item">
+                                        <h5>${medicine.toUpperCase()} 500mg</h5>
+                                        <p><strong>Disponível em:</strong></p>
+                                        <ul>
+                                            <li>USF Centro - 25 unidades</li>
+                                            <li>USF São José - 15 unidades</li>
+                                            <li>USF Santa Maria - 10 unidades</li>
+                                        </ul>
+                                    </div>
+                                    <div class="medicine-item">
+                                        <h5>${medicine.toUpperCase()} 250mg</h5>
+                                        <p><strong>Disponível em:</strong></p>
+                                        <ul>
+                                            <li>USF Centro - 12 unidades</li>
+                                            <li>USF Coroa do Meio - 8 unidades</li>
+                                        </ul>
+                                    </div>
+                                `;
+                            }
+                        });
+                    }, 100);
+                }
+                
+                // Adiciona funcionalidade para campanhas de vacinação
+                if (optionType === 'vaccination') {
+                    setTimeout(() => {
+                        document.getElementById('vaccine-location').addEventListener('change', function() {
+                            const location = this.value;
+                            if (location) {
+                                const vaccineDetails = document.getElementById('vaccine-details');
+                                vaccineDetails.innerHTML = `
+                                    <div class="health-option" style="margin-top: 15px;">
+                                        <h3>Local de Vacinação - ${getRegionName(location)}</h3>
+                                        <p><strong>Endereço:</strong> ${getVaccineAddress(location)}</p>
+                                        <p><strong>Horário:</strong> Segunda a Sexta, 7h às 17h</p>
+                                        <p><strong>Vacinas disponíveis:</strong> Gripe, COVID-19, Febre Amarela</p>
+                                        <button class="btn" id="vaccine-login">Acessar para Agendar</button>
+                                    </div>
+                                `;
+                                
+                                document.getElementById('vaccine-login').addEventListener('click', function() {
+                                    document.getElementById('login-modal').classList.add('active');
+                                });
+                            }
+                        });
+                    }, 100);
+                }
+                
+                // Adiciona funcionalidade para Programa Saúde da Família
+                if (optionType === 'family-health') {
+                    setTimeout(() => {
+                        document.getElementById('psf-region').addEventListener('change', function() {
+                            const region = this.value;
+                            if (region) {
+                                const psfDetails = document.getElementById('psf-details');
+                                psfDetails.innerHTML = `
+                                    <div class="health-option" style="margin-top: 15px;">
+                                        <h3>Programa Saúde da Família - ${getRegionName(region)}</h3>
+                                        <p><strong>Equipe responsável:</strong> ${getPSFTeam(region)}</p>
+                                        <p><strong>Atendimento:</strong> Segunda a Sexta, 7h às 17h</p>
+                                        <p><strong>Agendamento de visitas domiciliares</strong></p>
+                                        <button class="btn" id="psf-login">Acessar Cadastro</button>
+                                    </div>
+                                `;
+                                
+                                document.getElementById('psf-login').addEventListener('click', function() {
+                                    document.getElementById('login-modal').classList.add('active');
+                                });
+                            }
+                        });
+                    }, 100);
+                }
+            });
+        });
+        
+        // Habitação - Buscar imóveis
+        document.getElementById('search-properties').addEventListener('click', function() {
+            const cep = document.getElementById('cep').value;
+            const numero = document.getElementById('numero').value;
+            
+            if (!cep || !numero) {
+                alert('Por favor, preencha todos os campos.');
+                return;
+            }
+            
+            // Mostra o mapa
+            document.getElementById('property-map').style.display = 'flex';
+            document.getElementById('property-map').innerHTML = `Mapa - Localização: CEP ${cep}, Nº ${numero}`;
+            
+            const resultsContainer = document.getElementById('housing-results');
+            resultsContainer.innerHTML = `
+                <div class="property-card">
+                    <div class="property-image">
+                        Vista de Drone - Imóvel CEP ${cep}, Nº ${numero}
+                    </div>
+                    <div class="property-info">
+                        <h3>Imóvel em ${getAddressFromCEP(cep)}</h3>
+                        <p><strong>Valor do IPTU:</strong> R$ 1.250,00</p>
+                        <p><strong>Área construída:</strong> 85m²</p>
+                        <p><strong>Programa Minha Casa Minha Vida:</strong> Disponível</p>
+                        <button class="btn" style="margin-top: 10px;">Ver Detalhes</button>
+                    </div>
+                </div>
+            `;
+        });
+        
+        // Habitação - Outras opções
+        document.querySelectorAll('[data-housing-option]').forEach(option => {
+            option.addEventListener('click', function() {
+                const optionType = this.getAttribute('data-housing-option');
+                const detailsContainer = document.getElementById('housing-details');
+                
+                let content = '';
+                
+                switch(optionType) {
+                    case 'minha-casa':
+                        content = `
+                            <h3>Programa Minha Casa Minha Vida</h3>
+                            <div class="health-option" style="border-left-color: #3498db;">
+                                <p>Para acessar informações sobre sua situação no programa, débitos ou posição na fila de espera, faça login no sistema.</p>
+                                <button class="btn" id="minha-casa-login">Fazer Login</button>
+                            </div>
+                        `;
+                        break;
+                    case 'regularizacao':
+                        content = `
+                            <h3>Regularização Fundiária</h3>
+                            <div class="form-group">
+                                <label for="property-address">Endereço do Imóvel:</label>
+                                <input type="text" id="property-address" placeholder="Digite o endereço completo">
+                            </div>
+                            <div class="form-group">
+                                <label for="owner-cpf">CPF do Proprietário:</label>
+                                <input type="text" id="owner-cpf" placeholder="Digite o CPF">
+                            </div>
+                            <button class="btn" id="regularizacao-login">Acessar para Regularizar</button>
+                        `;
+                        break;
+                    case 'urbanizacao':
+                        content = `
+                            <h3>Urbanização de Assentamentos</h3>
+                            <div class="health-options">
+                                <div class="health-option" style="border-left-color: #3498db;">
+                                    <h4>Programa de Urbanização - Bairro Santa Maria</h4>
+                                    <p><strong>Status:</strong> Em andamento</p>
+                                    <p><strong>Previsão de conclusão:</strong> Dezembro/2023</p>
+                                    <p><strong>Beneficiários:</strong> 150 famílias</p>
+                                </div>
+                                <div class="health-option" style="border-left-color: #3498db;">
+                                    <h4>Programa de Urbanização - Bairro Industrial</h4>
+                                    <p><strong>Status:</strong> Planejamento</p>
+                                    <p><strong>Previsão de início:</strong> Março/2024</p>
+                                    <p><strong>Beneficiários:</strong> 200 famílias</p>
+                                </div>
+                            </div>
+                            <button class="btn" style="margin-top: 15px;" id="urbanizacao-login">Acessar Cadastro</button>
+                        `;
+                        break;
+                    case 'cadastro':
+                        content = `
+                            <h3>Cadastro Habitacional</h3>
+                            <p>Para se cadastrar nos programas habitacionais da prefeitura, similar ao Bolsa Família, é necessário fazer login no sistema.</p>
+                            <button class="btn" id="cadastro-login">Fazer Login/Cadastro</button>
+                        `;
+                        break;
+                }
+                
+                detailsContainer.innerHTML = content;
+                
+                // Adiciona funcionalidade de login para todas as opções de habitação
+                setTimeout(() => {
+                    const loginButtons = document.querySelectorAll('#minha-casa-login, #regularizacao-login, #urbanizacao-login, #cadastro-login');
+                    loginButtons.forEach(button => {
+                        if (button) {
+                            button.addEventListener('click', function() {
+                                document.getElementById('login-modal').classList.add('active');
+                            });
+                        }
+                    });
+                }, 100);
+            });
+        });
+        
+        // Água e Esgoto - Opções
+        document.querySelectorAll('.water-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const optionType = this.getAttribute('data-option');
+                const detailsContainer = document.getElementById('water-details');
+                
+                let content = '';
+                
+                switch(optionType) {
+                    case 'irregularities':
+                        content = `
+                            <h3>Irregularidades no Abastecimento</h3>
+                            <div class="health-options">
+                                <div class="water-option">
+                                    <h3>Rompimento na Av. Beira Mar</h3>
+                                    <p><strong>Status:</strong> Em reparo</p>
+                                    <p><strong>Previsão de normalização:</strong> 24 horas</p>
+                                    <p><strong>Áreas afetadas:</strong> Centro e Coroa do Meio</p>
+                                </div>
+                                <div class="water-option">
+                                    <h3>Manutenção Programada - Zona Norte</h3>
+                                    <p><strong>Status:</strong> Programada</p>
+                                    <p><strong>Data:</strong> 25/03/2023</p>
+                                    <p><strong>Horário:</strong> 8h às 14h</p>
+                                </div>
+                            </div>
+                        `;
+                        break;
+                    case 'debts':
+                        content = `
+                            <h3>Consultar Débitos</h3>
+                            <div class="form-group">
+                                <label for="water-cpf">CPF:</label>
+                                <input type="text" id="water-cpf" placeholder="Digite seu CPF">
+                            </div>
+                            <div class="form-group">
+                                <label for="water-installation">Número de Instalação:</label>
+                                <input type="text" id="water-installation" placeholder="Número da instalação">
+                            </div>
+                            <button class="btn">Consultar</button>
+                        `;
+                        break;
+                    case 'water-quality':
+                        content = `
+                            <h3>Monitoramento da Qualidade da Água</h3>
+                            <div class="form-group">
+                                <label for="water-region">Selecione sua região:</label>
+                                <select id="water-region">
+                                    <option value="">Selecione uma região</option>
+                                    <option value="centro">Centro</option>
+                                    <option value="sul">Zona Sul</option>
+                                    <option value="norte">Zona Norte</option>
+                                    <option value="leste">Zona Leste</option>
+                                </select>
+                            </div>
+                            <div id="water-quality-result"></div>
+                        `;
+                        break;
+                    case 'new-connection':
+                        content = `
+                            <h3>Solicitar Ligação Nova de Água e Esgoto</h3>
+                            <div class="form-group">
+                                <label for="connection-address">Endereço:</label>
+                                <input type="text" id="connection-address" placeholder="Digite o endereço">
+                            </div>
+                            <div class="form-group">
+                                <label for="connection-cpf">CPF:</label>
+                                <input type="text" id="connection-cpf" placeholder="Digite seu CPF">
+                            </div>
+                            <div class="form-group">
+                                <label for="connection-type">Tipo de Ligação:</label>
+                                <select id="connection-type">
+                                    <option value="">Selecione o tipo</option>
+                                    <option value="residencial">Residencial</option>
+                                    <option value="comercial">Comercial</option>
+                                    <option value="industrial">Industrial</option>
+                                </select>
+                            </div>
+                            <button class="btn">Solicitar</button>
+                        `;
+                        break;
+                    case 'eta-locations':
+                        content = `
+                            <h3>Estações de Tratamento de Água (ETA)</h3>
+                            <div class="health-options">
+                                <div class="water-option">
+                                    <h3>ETA Zona Sul</h3>
+                                    <p><strong>Endereço:</strong> Av. Santos Dumont, 1250</p>
+                                    <p><strong>Capacidade:</strong> 500L/s</p>
+                                    <p><strong>Área de abrangência:</strong> Zona Sul</p>
+                                </div>
+                                <div class="water-option">
+                                    <h3>ETA Zona Norte</h3>
+                                    <p><strong>Endereço:</strong> Rua Rio Branco, 750</p>
+                                    <p><strong>Capacidade:</strong> 350L/s</p>
+                                    <p><strong>Área de abrangência:</strong> Zona Norte</p>
+                                </div>
+                            </div>
+                        `;
+                        break;
+                }
+                
+                detailsContainer.innerHTML = content;
+                
+                // Adiciona funcionalidade para qualidade da água
+                if (optionType === 'water-quality') {
+                    setTimeout(() => {
+                        document.getElementById('water-region').addEventListener('change', function() {
+                            const region = this.value;
+                            if (region) {
+                                const resultContainer = document.getElementById('water-quality-result');
+                                resultContainer.innerHTML = `
+                                    <div class="water-option" style="margin-top: 15px;">
+                                        <h3>Qualidade da Água - ${getRegionName(region)}</h3>
+                                        <p><strong>Cloro Residual:</strong> 0,8 mg/L (Dentro do padrão)</p>
+                                        <p><strong>Turbidez:</strong> 0,3 NTU (Dentro do padrão)</p>
+                                        <p><strong>pH:</strong> 7,2 (Dentro do padrão)</p>
+                                        <p><strong>Coliformes Totais:</strong> Ausentes</p>
+                                        <p><strong>Status Geral:</strong> Própria para consumo</p>
+                                    </div>
+                                `;
+                            }
+                        });
+                    }, 100);
+                }
+            });
+        });
+        
+        // Modal de agendamento
+        document.getElementById('close-appointment').addEventListener('click', function() {
+            document.getElementById('appointment-modal').classList.remove('active');
+        });
+        
+        document.getElementById('confirm-appointment').addEventListener('click', function() {
+            const name = document.getElementById('patient-name').value;
+            const cpf = document.getElementById('patient-cpf').value;
+            const date = document.getElementById('appointment-date').value;
+            const time = document.getElementById('appointment-time').value;
+            const doctor = document.getElementById('doctor').value;
+            
+            if (!name || !cpf || !date || !time || !doctor) {
+                alert('Por favor, preencha todos os campos.');
+                return;
+            }
+            
+            alert('Consulta agendada com sucesso! Em breve você receberá uma confirmação.');
+            document.getElementById('appointment-modal').classList.remove('active');
+        });
+        
+        // Modal de login
+        document.getElementById('close-login').addEventListener('click', function() {
+            document.getElementById('login-modal').classList.remove('active');
+        });
+        
+        document.getElementById('confirm-login').addEventListener('click', function() {
+            const cpf = document.getElementById('login-cpf').value;
+            const password = document.getElementById('login-password').value;
+            
+            if (!cpf || !password) {
+                alert('Por favor, preencha todos os campos.');
+                return;
+            }
+            
+            alert('Login realizado com sucesso!');
+            document.getElementById('login-modal').classList.remove('active');
+        });
+        
+        // Formatação de CEP
+        document.getElementById('cep').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 5) {
+                value = value.substring(0,5) + '-' + value.substring(5,8);
+            }
+            e.target.value = value;
+        });
+        
+        // Funções auxiliares
+        function getUnitName(unitId) {
+            const units = {
+                'usf-centro': 'USF Centro',
+                'usf-sao-jose': 'USF São José',
+                'usf-santa-maria': 'USF Santa Maria',
+                'usf-coroa-do-meio': 'USF Coroa do Meio'
+            };
+            return units[unitId] || 'Unidade de Saúde';
+        }
+        
+        function getRegionName(regionId) {
+            const regions = {
+                'centro': 'Centro',
+                'sao-jose': 'São José',
+                'santa-maria': 'Santa Maria',
+                'coroa-do-meio': 'Coroa do Meio',
+                'sul': 'Zona Sul',
+                'norte': 'Zona Norte',
+                'leste': 'Zona Leste'
+            };
+            return regions[regionId] || 'Região';
+        }
+        
+        function getVaccineAddress(location) {
+            const addresses = {
+                'centro': 'Rua Propriá, 300 - Centro',
+                'sao-jose': 'Av. Governador João Alves Filho, 335 - São José',
+                'santa-maria': 'Rua Santa Luzia, 795 - Santa Maria',
+                'coroa-do-meio': 'Av. Hermes Fontes, 355 - Coroa do Meio'
+            };
+            return addresses[location] || 'Endereço não disponível';
+        }
+        
+        function getPSFTeam(region) {
+            const teams = {
+                'centro': 'Equipe Dr. Silva',
+                'sao-jose': 'Equipe Dra. Santos',
+                'santa-maria': 'Equipe Dr. Oliveira',
+                'coroa-do-meio': 'Equipe Dra. Costa'
+            };
+            return teams[region] || 'Equipe de Saúde da Família';
+        }
+        
+        function getAddressFromCEP(cep) {
+            // Simulação de conversão de CEP para endereço
+            const addresses = {
+                '49000-000': 'Centro, Aracaju/SE',
+                '49050-000': 'São José, Aracaju/SE',
+                '49040-000': 'Santa Maria, Aracaju/SE',
+                '49035-000': 'Coroa do Meio, Aracaju/SE'
+            };
+            return addresses[cep] || `Endereço do CEP ${cep}`;
+        }
+        
+        // Inicialização - Mostrar Saúde por padrão
+        document.getElementById('health-content').classList.add('active');
+    </script>
+</body>
+</html>
