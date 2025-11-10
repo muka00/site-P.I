@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prefeitura Municipal de Aracaju</title>
+    <style>
+        /* Reset e estilos gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header */
+        header {
+            background-color: #005baa;
+            color: white;
+        }
+        
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 60px;
+            margin-right: 10px;
+        }
+        
+        .logo-text h1 {
+            font-size: 22px;
+            font-weight: bold;
+        }
+        
+        .logo-text p {
+            font-size: 14px;
+        }
+        
+        .search-bar {
+            display: flex;
+        }
+        
+        .search-bar input {
+            padding: 8px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+        }
+        
+        .search-bar button {
+            background-color: #ffcc00;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        
+        /* Menu de navegação */
+        nav {
+            background-color: #004080;
+        }
+        
+        .main-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .main-menu li {
+            position: relative;
+        }
+        
+        .main-menu a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 15px;
+            display: block;
+            transition: background-color 0.3s;
+        }
+        
+        .main-menu a:hover {
+            background-color: #003366;
+        }
+        
+        /* Banner principal */
+        .banner {
+            background-color: #e6f2ff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        .banner h2 {
+            color: #005baa;
+            margin-bottom: 10px;
+        }
+        
+        .banner p {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .banner button {
+            background-color: #005baa;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        /* Conteúdo principal */
+        .main-content {
+            display: flex;
+            margin: 20px 0;
+            gap: 20px;
+        }
+        
+        .news-section {
+            flex: 2;
+        }
+        
+        .news-section h3 {
+            color: #005baa;
+            border-bottom: 2px solid #005baa;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+        
+        .news-item {
+            background-color: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .news-item h4 {
+            color: #005baa;
+            margin-bottom: 8px;
+        }
+        
+        .news-item p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .news-item a {
+            color: #005baa;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .sidebar {
+            flex: 1;
+        }
+        
+        .services, .quick-links {
+            background-color: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .services h3, .quick-links h3 {
+            color: #005baa;
+            border-bottom: 2px solid #005baa;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+        
+        .services ul, .quick-links ul {
+            list-style: none;
+        }
+        
+        .services li, .quick-links li {
+            margin-bottom: 8px;
+        }
+        
+        .services a, .quick-links a {
+            color: #333;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .services a:hover, .quick-links a:hover {
+            color: #005baa;
+        }
+        
+        .services a::before, .quick-links a::before {
+            content: "▶";
+            color: #005baa;
+            margin-right: 8px;
+            font-size: 10px;
+        }
+        
+        /* Rodapé */
+        footer {
+            background-color: #004080;
+            color: white;
+            padding: 30px 0;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .footer-section {
+            flex: 1;
+            padding: 0 15px;
+        }
+        
+        .footer-section h4 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #005baa;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .footer-section {
+                margin-bottom: 20px;
+            }
+            
+            .top-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .search-bar {
+                margin-top: 10px;
+                width: 100%;
+            }
+            
+            .search-bar input {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="container">
+            <div class="top-header">
+                <div class="logo">
+                    <!-- Logo fictício - em um site real, substituir pela imagem real -->
+                    <div style="width: 60px; height: 60px; background-color: white; display: flex; align-items: center; justify-content: center; margin-right: 10px;">
+                        <span style="color: #005baa; font-weight: bold;">PMA</span>
+                    </div>
+                    <div class="logo-text">
+                        <h1>PREFEITURA MUNICIPAL DE ARACAJU</h1>
+                        <p>Capital de Sergipe - Cidade que enche os olhos de amor</p>
+                    </div>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Buscar no site...">
+                    <button>🔍</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Menu de navegação -->
+        <nav>
+            <div class="container">
+                <ul class="main-menu">
+                    <li><a href="index.html">A Prefeitura</a></li>
+                    <li><a href="secretarias.html">Secretarias</a></li>
+                    <li><a href="Serviços.html">Serviços</a></li>
+                    <li><a href="Divulgação.html">Divulgação</a></li>
+                    <li><a href="transparencia.html">Transparência</a></li>
+                    <li><a href="editais.html">Editais</a></li>
+                    <li><a href="faleconosco.html">Fale Conosco</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Banner principal -->
+    <section class="banner">
+    <div class="container">
+        <h2>Bem-vindo ao portal da Prefeitura de Aracaju</h2>
+        <p>Encontre informações sobre serviços, notícias e muito mais</p>
+        <button onclick= window.location.href="Serviços.html">ACESSAR SERVIÇOS ONLINE</button>
+    </div>
+</section>
+    
+    <!-- Conteúdo principal -->
+    <main class="container">
+        <div class="main-content">
+            <!-- Seção de notícias -->
+            <section class="news-section">
+                <h3>ÚLTIMAS NOTÍCIAS</h3>
+                
+                <div class="news-item">
+                    <h4>Prefeitura anuncia novo programa de urbanização</h4>
+                    <p>Publicado em: 15 de março de 2023</p>
+                    <p>A Prefeitura de Aracaju lançou um novo programa de urbanização para melhorar a infraestrutura de diversos bairros da cidade...</p>
+                    <a href="#">Leia mais</a>
+                </div>
+                
+                <div class="news-item">
+                    <h4>Inscrições abertas para cursos profissionalizantes</h4>
+                    <p>Publicado em: 14 de março de 2023</p>
+                    <p>A Secretaria Municipal de Educação está com inscrições abertas para diversos cursos profissionalizantes gratuitos...</p>
+                    <a href="#">Leia mais</a>
+                </div>
+                
+                <div class="news-item">
+                    <h4>Novo horário de funcionamento do comércio</h4>
+                    <p>Publicado em: 13 de março de 2023</p>
+                    <p>A Prefeitura de Aracaju estabeleceu novo horário de funcionamento para o comércio a partir do próximo mês...</p>
+                    <a href="#">Leia mais</a>
+                </div>
+                
+                <div class="news-item">
+                    <h4>Campanha de vacinação contra a gripe tem início</h4>
+                    <p>Publicado em: 12 de março de 2023</p>
+                    <p>A Secretaria Municipal de Saúde iniciou a campanha de vacinação contra a gripe em todos os postos de saúde da cidade...</p>
+                    <a href="#">Leia mais</a>
+                </div>
+            </section>
+            
+            <!-- Barra lateral -->
+            <aside class="sidebar">
+                <div class="services">
+                    <h3>SERVIÇOS</h3>
+                    <ul>
+                        <li><a href="Serviços.html">IPTU</a></li>
+                        <li><a href="Serviços.html">Alvará de Funcionamento</a></li>
+                        <li><a href="Serviços.html">Débitos</a></li>
+                        <li><a href="servicos.html">Agendamento Online</a></li>
+                        <li><a href="servicos.html">Medicamentos</a></li>
+                        <li><a href="servicos.html">Urbanização de Assentamentos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="quick-links">
+                    <h3>LINKS RÁPIDOS</h3>
+                    <ul>
+                        <li><a href="noticias.html">Editais e Licitações</a></li>
+                        <li><a href="noticias.html">Diário Oficial</a></li>
+                        <li><a href="noticias.html">Transparência</a></li>
+                        <li><a href="noticias.html">Leis Municipais</a></li>
+                        <li><a href="noticias.html">Canais de Atendimento</a></li>
+                        <li><a href="noticias.html">Trabalhe Conosco</a></li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </main>
+    
+    <!-- Rodapé -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>CONTATO</h4>
+                    <ul>
+                        <li>Endereço: Rua Santa Luzia, 795 - Centro</li>
+                        <li>Telefone: (79) 3179-1000</li>
+                        <li>E-mail: ouvidoria@aracaju.se.gov.br</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>HORÁRIO DE ATENDIMENTO</h4>
+                    <ul>
+                        <li>Segunda a Sexta: 7h às 13h</li>
+                        <li>Plantão: Sábados, domingos e feriados</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>LINKS ÚTEIS</h4>
+                    <ul>
+                        <li><a href="Serviços.html">IPTU</a></li>
+                        <li><a href="Serviços.html">Alvará de Funcionamento</a></li>
+                        <li><a href="Serviços.html">Débitos</a></li>
+                        <li><a href="servicos.html">Agendamento Online</a></li>
+                        <li><a href="servicos.html">Medicamentos</a></li>
+                        <li><a href="servicos.html">Urbanização de Assentamentos</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; Pagina Demonstrativa</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
